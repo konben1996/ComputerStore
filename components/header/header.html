@@ -1,20 +1,34 @@
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="#home">Computer Store</a>
+    <a class="brand" href="#home" aria-label="Computer Store - Trang chủ">
+      <span class="brand-mark">CS</span>
+      <span class="brand-text">
+        <strong>Computer Store</strong>
+        <small>Máy tính • Laptop • Linh kiện • Phụ kiện</small>
+      </span>
+    </a>
 
-    <nav class="nav" aria-label="Điều hướng chính">
+    <button class="nav-toggle" type="button" aria-controls="main-navigation" aria-expanded="false">
+      <span class="nav-toggle-icon" aria-hidden="true"></span>
+      <span class="nav-toggle-label">Menu</span>
+    </button>
+
+    <div class="nav-overlay" hidden></div>
+
+    <nav class="nav" id="main-navigation" aria-label="Điều hướng chính">
+      <button class="nav-close" type="button" aria-label="Đóng menu">×</button>
       <a href="#home">Trang chủ</a>
-      <a href="#featured-products">Sản phẩm</a>
       <a href="#categories">Danh mục</a>
+      <a href="#featured-products">Sản phẩm</a>
       <a href="#promotions">Khuyến mãi</a>
       <a href="#news">Tin tức</a>
       <a href="#contact">Liên hệ</a>
     </nav>
 
     <div class="header-actions" aria-label="Tài khoản và giỏ hàng">
-      <a href="#" class="header-action">Tìm kiếm</a>
-      <a href="#" class="header-action">Tài khoản</a>
-      <a href="#" class="header-action">Giỏ hàng</a>
+      <a href="#home" class="header-action">Thông tin tài khoản</a>
+      <a href="#home" class="header-action">Đăng xuất</a>
+      <a href="#home" class="header-action header-action-primary">Giỏ hàng</a>
     </div>
   </div>
 </header>

@@ -125,4 +125,70 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadComponent("#site-footer", "components/footer/footer.html"),
     renderHomepageData()
   ]);
+
+  const siteHeader = document.querySelector(".site-header");
+  const navToggle = document.querySelector(".nav-toggle");
+  const mainNavigation = document.querySelector("#main-navigation");
+  const navOverlay = document.querySelector(".nav-overlay");
+  const navClose = document.querySelector(".nav-close");
+
+  if (siteHeader) {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateHeaderState = () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY;
+      const pastThreshold = currentScrollY > 80;
+
+      siteHeader.classList.toggle("is-scrolled", currentScrollY > 8);
+      siteHeader.classList.toggle("is-hidden", scrollingDown && pastThreshold);
+      lastScrollY = currentScrollY;
+      ticking = false;
+    };
+
+    updateHeaderState();
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateHeaderState);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+  }
+
+  if (navToggle && mainNavigation && navOverlay && navClose) {
+    const openMenu = () => {
+      navToggle.setAttribute("aria-expanded", "true");
+      mainNavigation.classList.add("is-open");
+      navOverlay.hidden = false;
+      document.body.classList.add("nav-open");
+    };
+
+    const closeMenu = () => {
+      navToggle.setAttribute("aria-expanded", "false");
+      mainNavigation.classList.remove("is-open");
+      navOverlay.hidden = true;
+      document.body.classList.remove("nav-open");
+    };
+
+    navToggle.addEventListener("click", () => {
+      const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
+      if (isExpanded) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    navClose.addEventListener("click", closeMenu);
+    navOverlay.addEventListener("click", closeMenu);
+
+    mainNavigation.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+  }
 });
