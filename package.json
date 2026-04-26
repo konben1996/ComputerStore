@@ -1,0 +1,14 @@
+{
+  "name": "computer-store",
+  "version": "1.0.0",
+  "description": "Computer Store template with Docker and MySQL integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "mysql2": "^3.14.3"
+  },
+  "license": "MIT"
+}
